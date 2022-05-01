@@ -104,10 +104,10 @@ button[disabled] {
   border: none;
   display: block;
   width: 100%;
-  padding-top: 15px;
+  padding-top: 50px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 85px;
+  padding-bottom: 50px;
   font-size: 1.2rem;
   text-align: center;
   margin-top: 10px;
@@ -115,7 +115,7 @@ button[disabled] {
   border: 2px dashed #c0c7cf;
   border-radius: 6px;
   resize: none;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 @media (max-width: 690px) {
