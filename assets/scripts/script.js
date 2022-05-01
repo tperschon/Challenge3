@@ -5,7 +5,6 @@
     and assigns it an object for use in the script
     */
 var generateBtn = document.querySelector("#generate");
-console.log(typeof generateBtn);
 
 /*  Function calling another function we write
     generatePassword() returns a value that is stored in in the password variable
@@ -18,7 +17,10 @@ function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
     
-    passwordText.value = password;
+    // if empty string is passed through, nothing happens
+    if(!password == "") {
+        passwordText.value = password;
+    }
 
 }
 
@@ -58,9 +60,18 @@ var generatePassword = function() {
 
     // Final user selection about password length
     var passwordLength = prompt("How many characters, from 8 to 128, would you like your password to be?");
+
+    // If user hits cancel, passwordLength will be null and so we return empty string to cancel out of dialogs
+    if (passwordLength === null) {
+        return;
+    }
     
     // Ensure user selected valid password length and an actual number, but also not a decimal
     while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength) || passwordLength.includes(".")) {
+        // If user hits cancel, passwordLength will be null and so we return empty string to cancel out of dialogs
+        if (passwordLength === null) {
+            return;
+        }
         passwordLength = prompt(`Invalid entry. You entered ${passwordLength}.\nLength must be an integer from 8 to 128 characters.\nHow many characters, from 8 to 128, would you like your password tp be?`);
     }
 
