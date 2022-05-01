@@ -102,12 +102,12 @@ button[disabled] {
   -moz-appearance: none;
   appearance: none;
   border: none;
-  display: block;
+  display: flex;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 15px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 60px;
+  padding-bottom: 85px;
   font-size: 1.2rem;
   text-align: center;
   margin-top: 10px;
@@ -128,6 +128,7 @@ button[disabled] {
 
   #password {
     font-size: 1rem;
+    padding-bottom: 200px;
   }
 }
 
