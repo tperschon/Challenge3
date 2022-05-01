@@ -48,3 +48,10 @@ You can continue to use the button and generate additional passwords as long as 
 Generating additional passwords will not cause additional "Password Generated" messages to appear.
 ```
 ![After the process is completed, a password using 1-4 type parameters with 8-128 digits is generated".](./assets/images/password-generated.png)
+
+## About
+```
+File structure features an assets folder that containers subfolders
+The assets/css folder contains a .css file that styles index.html
+The assets/images folder contains images utilized by this readme
+The assets/scripts folder contains a .js file that gives index.html functionality
