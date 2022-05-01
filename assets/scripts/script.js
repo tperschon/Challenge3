@@ -28,7 +28,7 @@ var generatePassword = function() {
     var useUpperCase = confirm("Use upper case letters?");
     var useSpecial = confirm("Use special characters?");
     var useNumbers = confirm("Use numbers?");
-    
+
     // Ensure user selected at least one character type
     while (!useLowerCase && !useUpperCase && !useSpecial && !useNumbers) {
         alert("At least one character type must be selected!");
@@ -48,43 +48,60 @@ var generatePassword = function() {
 
     // Iterates a # of times equal to password length specified by user.
     for (i = 0;i < passwordLength;i++) {
+
+        // Generate # between 1 and 3, which corresponds to the types of characters a person can choose
         var typePicker = Math.floor(Math.random() * 4);
+
+        // Use switch case for randomly generated number. Basically the same as if-else but I like switch.
         switch (typePicker) {
+
             case 0:
+                // Validation for character type.
+                // If false, decrement i so we don't shorten string for random cases that aren't valid for chosen character types.
                 if(useLowerCase) {
                     var picked = chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length));
                     returnedPassword += picked;
-                    console.log(`Picked ${picked}`);
-                } else { i-- }
-                console.log("Case 0");
+                }
+                else { 
+                    i-- 
+                }
+
                 break;
+
             case 1:
                 if(useUpperCase) {
                     var picked = chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length));
                     returnedPassword += picked;
-                    console.log(`Picked ${picked}`);
-                } else { i-- }
-                console.log("Case 1");
+                }
+                else {
+                    i--
+                }
                 break;
+
             case 2:
                 if(useSpecial) {
                     var picked = chars.special.charAt(Math.floor(Math.random() * chars.special.length));
                     returnedPassword += picked;
-                    console.log(`Picked ${picked}`);
-                } else { i-- }
-                console.log("Case 2");
+                }
+                else {
+                    i--
+                }
+
                 break;
+
             case 3:
                 if(useNumbers) {
                     var picked = chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length));
                     returnedPassword += picked;
-                    console.log(`Picked ${picked}`)
-                } else { i-- }
-                console.log("Case 3");
+                }
+                else {
+                    i-- 
+                }
                 break;
         };
     }
-    return `Here's your password!\n${returnedPassword}`;
+    // Return 
+    return returnedPassword;
 };
 
 generateBtn.addEventListener("click", writePassword);
