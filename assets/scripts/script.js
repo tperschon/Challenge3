@@ -28,6 +28,7 @@ var generatePassword = function() {
     var useUpperCase = confirm("Use upper case letters?");
     var useSpecial = confirm("Use special characters?");
     var useNumbers = confirm("Use numbers?");
+    
     // Ensure user selected at least one character type
     while (!useLowerCase && !useUpperCase && !useSpecial && !useNumbers) {
         alert("At least one character type must be selected!");
@@ -36,14 +37,14 @@ var generatePassword = function() {
         useSpecial = confirm("Use special characters?");
         useNumbers = confirm("Use numbers?");
     }
+
     // Final user selection about password length
     var passwordLength = prompt("How many characters, from 8 to 128, would you like your password to be?");
     
     // Ensure user selected valid password length and an actual number, but also not a decimal
     while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength) || passwordLength.includes(".")) {
-        passwordLength = prompt(`Invalid entry. You entered ${passwordLength}, ${typeof passwordLength}.\nLength must be an integer from 8 to 128 characters.\nHow many characters, from 8 to 128, would you like your password tp be?`);
+        passwordLength = prompt(`Invalid entry. You entered ${passwordLength}.\nLength must be an integer from 8 to 128 characters.\nHow many characters, from 8 to 128, would you like your password tp be?`);
     }
-
 
     // Iterates a # of times equal to password length specified by user.
     for (i = 0;i < passwordLength;i++) {
@@ -87,4 +88,3 @@ var generatePassword = function() {
 };
 
 generateBtn.addEventListener("click", writePassword);
-console.log(generateBtn) 
