@@ -1,14 +1,4 @@
-# Challenge3
-Repository for 3rd challenge, a password generator.
-# 03 JavaScript: Password Generator
-
-## Your Task
-
-This week's Challenge requires you to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
-
-The password can include special characters. If you’re unfamiliar with these, see this [list of password special characters](https://www.owasp.org/index.php/Password_special_characters) from the OWASP Foundation.
-
-## User Story
+# User Story
 
 ```
 AS AN employee with access to sensitive data
@@ -35,68 +25,26 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
-
-## Mock-Up
-
-The following image shows the web application's appearance and functionality:
-
-![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
-
-## Grading Requirements
-
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
-- - -
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+### To Use
+```
+You will see a page with a large red "Generate Password" button, clicking it will open some dialogs that dictate parameters of generating the password.
+For the first four dialogs, simply clicking "OK or "Cancel" will give answers on whether or not to include those criteria.
+At least one of the first four dialogs must be entered as "OK" or else it will correct you and repeat the dialogs.
+```
+![The Password Generator application displays a red button to "Generate Password".](./assets/images/confirm.png)
+```
+The last dialog requires keyboard input. Valid input is an integer from 8 to 128.
+If you enter invalid input, you will be presented with another prompt.
+This additional prompt will tell you what you tried to input and allow you to input again.
+Continuing to enter invalid input will cause the additional prompt to keep displaying until valid input is entered.
+Clicking on "Cancel" on the prompt box will cancel out of the entire password generation process.
+If you cancel the password generation process, you can begin again by clicking the red "Generate Password" button
+```
+![The "Generate Password" button causes dialogs to appear, culminating in a prompt for a number range".](./assets/images/prompt-invalid.png)
+```
+After entering finishing with the dialog boxes, you should see a password matching the entered parameters generate in the box.
+A "Password Generated" message will also appear on the page above the text box.
+You can continue to use the button and generate additional passwords as long as you wish.
+Generating additional passwords will not cause additional "Password Generated" messages to appear.
+```
+![After the process is completed, a password using 1-4 type parameters with 8-128 digits is generated".](./assets/images/password-generated.png)
