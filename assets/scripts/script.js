@@ -54,12 +54,14 @@ var generatePassword = function() {
     // This loop's conditions will not return true if user selects at least one character type
     while (chars.typesBit === 0) {
 
-        // User has not selected at least one character type, so we alert them and go back over character types before moving on
+        // Each confirm adds to chars.typesBit if true
+        // Think of it like 4 bits, as each user selection is binary
         if(confirm("Use lower case letters?")) {chars.typesBit += 1;}
         if(confirm("Use upper case letters?")) {chars.typesBit += 2;}
         if(confirm("Use special characters?")) {chars.typesBit += 4;}
         if(confirm("Use numbers?")) {chars.typesBit += 8;}
-        
+
+        // User has not selected at least one character type, so we alert them and go back over character types before moving on
         if(chars.typesBit === 0) {alert("At least one character type must be selected!");}
 
     }
@@ -80,128 +82,87 @@ var generatePassword = function() {
         }
         passwordLength = prompt(`Invalid entry. You entered \"${passwordLength}\".\nLength must be an integer from 8 to 128 characters.\nHow many characters, from 8 to 128, would you like your password to be?`);
     }
-    var iterations = 0;
+
     // Iterates a # of times equal to password length specified by user.
     for (i = 0;i < passwordLength;i++) {
-        iterations ++;
+        // Reference chars.typesBit, which has a value of 1 to 15 since prior while loop will not allow it to be 0
+        // Each case corresponds to a different combination of choices made by the user
         switch (chars.typesBit) {
-
+            // User only selected to use lower case characters
             case 1: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
+            // User only selected to use upper case characters
             case 2: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-
+            // User selected to use lower case and upper case characters
             case 3: switch(Math.floor(Math.random() * 2)){
-
                 case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
                 case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-    
             }
-
+            // User only selected to use special characters
             case 4: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-
+            // User selected to use lower case and special characters
             case 5: switch(Math.floor(Math.random() * 2)){
-
                 case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
                 case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-    
             }
-
+            // User selected to use upper case and special characters
             case 6: switch(Math.floor(Math.random() * 2)){
-
                 case 0: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-
                 case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-    
             }
-
+            // User selected to use lower case, upper case and special characters
             case 7: switch(Math.floor(Math.random() * 3)){
-
                 case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
                 case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-
                 case 2: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-    
             }
-
+            // User only selected to use number characters
             case 8: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-
+            // User selected to use lower case and number characters
             case 9: switch(Math.floor(Math.random() * 2)){
-
                 case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
                 case 1: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-    
             }
-
+            // User selected to use upper case and number characters
             case 10: switch(Math.floor(Math.random() * 2)){
-
                 case 0: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-
                 case 1: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-    
             }
-
+            // User selected to use lower case, upper case and number characters
             case 11: switch(Math.floor(Math.random() * 3)){
-
-                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;  
                 case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-
                 case 2: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-    
             }
-
+            // User selected to use special and number characters
             case 12: switch(Math.floor(Math.random() * 2)){
-
                 case 0: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-
                 case 1: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-    
             }
-
+            // User selected to use lower case, upper case and number characters
             case 13: switch(Math.floor(Math.random() * 3)){
-
                 case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
                 case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-
                 case 2: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-    
             }
-
+            // User selected to use upper case, special and number characters
             case 14: switch(Math.floor(Math.random() * 3)){
-
                 case 0: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-
                 case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-
                 case 2: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-    
             }
-            
+            // User selected to use lower case, upper case, special and number characters
             case 15: switch(Math.floor(Math.random() * 4)){
-
                 case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
-
                 case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
-
                 case 2: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
-
                 case 3: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
-    
             }
-
         }
-
     }
     console.log(iterations);
     // Return our now-generated password
     return returnedPassword;
 };
-
 /*  With our assigned button object, when clicked, execute writePassword()
     writePassword() does its thing, which has several confirms and prompts for our user
     These prompts collect criteria from user which are used to generate the password
