@@ -39,19 +39,20 @@ var generatePassword = function() {
         lowerCase: "abcdefghijklmnopqrstuvwxyz",
         upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         special: "`~!@#$%^&*()_+-=[]{};':\\\",.<>/?|",
-        numbers: "0123456789",
-        options: [] // Store answers user gives about whether to use particular criteria
+        numbers: "0123456789"
     }
+    // Store answers user gives about whether to use particular criteria
+    var options = [];
     // Ensure user selected at least one character type using comparisons to ensure all are false
     // This loop's conditions will not return true if user selects at least one character type
-    while (!Array.isArray(chars.options) || chars.options.length === 0) {
+    while (!Array.isArray(options) || options.length === 0) {
         // confirms asking for user input on types of characters to include
-        if(confirm("Use lower case letters?")) {chars.options.push("lower")};
-        if(confirm("Use upper case letters?")) {chars.options.push("upper")};
-        if(confirm("Use special characters?")) {chars.options.push("special")};
-        if(confirm("Use numbers?")) {chars.options.push("numbers")};
+        if(confirm("Use lower case letters?")) {options.push("lower")};
+        if(confirm("Use upper case letters?")) {options.push("upper")};
+        if(confirm("Use special characters?")) {options.push("special")};
+        if(confirm("Use numbers?")) {options.push("numbers")};
         // User has not selected at least one character type, so we alert them and go back over character types before moving on
-        if(!Array.isArray(chars.options) || chars.options.length === 0) {alert("At least one character type must be selected!")};
+        if(!Array.isArray(options) || options.length === 0) {alert("At least one character type must be selected!")};
     }
     // Final user selection about password length
     var passwordLength = prompt("How many characters, from 8 to 128, would you like your password to be?");
@@ -69,9 +70,9 @@ var generatePassword = function() {
     }
     // Iterates a # of times equal to password length specified by user.
     for (i = 0;i < passwordLength;i++) {
-        // Switch case with argument of random option from any index of chars.options, which dynamically scales larger depending on user choice
+        // Switch case with argument of random option from any index of options, which dynamically scales larger depending on user choice
         // Each case refers to a specific type of character, see confirm()s above
-        switch(chars.options[Math.floor(Math.random() * chars.options.length)]) {
+        switch(options[Math.floor(Math.random() * options.length)]) {
             case "lower": returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
             case "upper": returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
             case "special": returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
