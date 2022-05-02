@@ -4,6 +4,7 @@
     (in this case, the id "generate")
     and assigns it an object for use in the script
     */
+//   if(confirm("Testing")) {};
 var generateBtn = document.querySelector("#generate");
 
 /*  Function calling another function we write
@@ -43,26 +44,23 @@ var generatePassword = function() {
         lowerCase: "abcdefghijklmnopqrstuvwxyz",
         upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         special: "`~!@#$%^&*()_+-=[]{};':\\\",.<>/?|",
-        numbers: "0123456789"
+        numbers: "0123456789",
+        typesBit: 0
     }
 
     // Store answers user gives about whether to use particular criteria
-    var useLowerCase = confirm("Use lower case letters?");
-    var useUpperCase = confirm("Use upper case letters?");
-    var useSpecial = confirm("Use special characters?");
-    var useNumbers = confirm("Use numbers?");
 
     // Ensure user selected at least one character type using comparisons to ensure all are false
     // This loop's conditions will not return true if user selects at least one character type
-    while (!useLowerCase && !useUpperCase && !useSpecial && !useNumbers) {
+    while (chars.typesBit === 0) {
 
         // User has not selected at least one character type, so we alert them and go back over character types before moving on
-        alert("At least one character type must be selected!");
-
-        useLowerCase = confirm("Use lower case letters?");
-        useUpperCase = confirm("Use upper case letters?");
-        useSpecial = confirm("Use special characters?");
-        useNumbers = confirm("Use numbers?");
+        if(confirm("Use lower case letters?")) {chars.typesBit += 1;}
+        if(confirm("Use upper case letters?")) {chars.typesBit += 2;}
+        if(confirm("Use special characters?")) {chars.typesBit += 4;}
+        if(confirm("Use numbers?")) {chars.typesBit += 8;}
+        
+        if(chars.typesBit === 0) {alert("At least one character type must be selected!");}
 
     }
 
@@ -82,61 +80,124 @@ var generatePassword = function() {
         }
         passwordLength = prompt(`Invalid entry. You entered \"${passwordLength}\".\nLength must be an integer from 8 to 128 characters.\nHow many characters, from 8 to 128, would you like your password to be?`);
     }
-
+    var iterations = 0;
     // Iterates a # of times equal to password length specified by user.
     for (i = 0;i < passwordLength;i++) {
+        iterations ++;
+        switch (chars.typesBit) {
 
-        // Generate # between 1 and 3, which corresponds to the types of characters a person can choose
-        var typePicker = Math.floor(Math.random() * 4);
+            case 1: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
 
-        // Use switch case for randomly generated number. Basically the same as if-else but I like switch.
-        switch (typePicker) {
+            case 2: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
 
-            case 0:
-                // Validation for character type.
-                // If false, decrement i so we don't shorten string for random cases that aren't valid for chosen character types.
-                if(useLowerCase) {
-                    var picked = chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length));
-                    returnedPassword += picked;
-                }
-                else { 
-                    i-- 
-                }
+            case 3: switch(Math.floor(Math.random() * 2)){
 
-                break;
-                // See case 0
-            case 1:
-                if(useUpperCase) {
-                    var picked = chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length));
-                    returnedPassword += picked;
-                }
-                else {
-                    i--
-                }
-                break;
-                // See case 0
-            case 2:
-                if(useSpecial) {
-                    var picked = chars.special.charAt(Math.floor(Math.random() * chars.special.length));
-                    returnedPassword += picked;
-                }
-                else {
-                    i--
-                }
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
 
-                break;
-                // See case 0
-            case 3:
-                if(useNumbers) {
-                    var picked = chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length));
-                    returnedPassword += picked;
-                }
-                else {
-                    i-- 
-                }
-                break;
-        };
+                case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
+    
+            }
+
+            case 4: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+
+            case 5: switch(Math.floor(Math.random() * 2)){
+
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
+
+                case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+    
+            }
+
+            case 6: switch(Math.floor(Math.random() * 2)){
+
+                case 0: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
+
+                case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+    
+            }
+
+            case 7: switch(Math.floor(Math.random() * 3)){
+
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
+
+                case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
+
+                case 2: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+    
+            }
+
+            case 8: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+
+            case 9: switch(Math.floor(Math.random() * 2)){
+
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
+
+                case 1: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+    
+            }
+
+            case 10: switch(Math.floor(Math.random() * 2)){
+
+                case 0: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
+
+                case 1: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+    
+            }
+
+            case 11: switch(Math.floor(Math.random() * 3)){
+
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
+
+                case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
+
+                case 2: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+    
+            }
+
+            case 12: switch(Math.floor(Math.random() * 2)){
+
+                case 0: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+
+                case 1: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+    
+            }
+
+            case 13: switch(Math.floor(Math.random() * 3)){
+
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
+
+                case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+
+                case 2: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+    
+            }
+
+            case 14: switch(Math.floor(Math.random() * 3)){
+
+                case 0: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
+
+                case 1: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+
+                case 2: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+    
+            }
+            
+            case 15: switch(Math.floor(Math.random() * 4)){
+
+                case 0: returnedPassword += chars.lowerCase.charAt(Math.floor(Math.random() * chars.lowerCase.length)); break;
+
+                case 1: returnedPassword += chars.upperCase.charAt(Math.floor(Math.random() * chars.upperCase.length)); break;
+
+                case 2: returnedPassword += chars.special.charAt(Math.floor(Math.random() * chars.special.length)); break;
+
+                case 3: returnedPassword += chars.numbers.charAt(Math.floor(Math.random() * chars.numbers.length)); break;
+    
+            }
+
+        }
+
     }
+    console.log(iterations);
     // Return our now-generated password
     return returnedPassword;
 };
