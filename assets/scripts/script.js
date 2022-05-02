@@ -47,6 +47,7 @@ var generatePassword = function() {
     // This loop's conditions will not return true if user selects at least one character type
     while (!Array.isArray(options) || options.length === 0) {
         // confirms asking for user input on types of characters to include
+        // if statements execute an action if confirm comes up "true" which happens if user clicks "OK"
         if(confirm("Use lower case letters?")) {options.push("lower")};
         if(confirm("Use upper case letters?")) {options.push("upper")};
         if(confirm("Use special characters?")) {options.push("special")};
