@@ -47,8 +47,8 @@ var generatePassword = function() {
     while (!Array.isArray(chars.options) || chars.options.length === 0) {
 
         // User has not selected at least one character type, so we alert them and go back over character types before moving on
-        if(confirm("Use lower case letters?")) {chars.options.push("upper")};
-        if(confirm("Use upper case letters?")) {chars.options.push("lower")};
+        if(confirm("Use lower case letters?")) {chars.options.push("lower")};
+        if(confirm("Use upper case letters?")) {chars.options.push("upper")};
         if(confirm("Use special characters?")) {chars.options.push("special")};
         if(confirm("Use numbers?")) {chars.options.push("numbers")};
         console.log(chars.options)
