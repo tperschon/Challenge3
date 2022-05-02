@@ -45,13 +45,12 @@ var generatePassword = function() {
     // Ensure user selected at least one character type using comparisons to ensure all are false
     // This loop's conditions will not return true if user selects at least one character type
     while (!Array.isArray(chars.options) || chars.options.length === 0) {
-
-        // User has not selected at least one character type, so we alert them and go back over character types before moving on
+        // confirms asking for user input on types of characters to include
         if(confirm("Use lower case letters?")) {chars.options.push("lower")};
         if(confirm("Use upper case letters?")) {chars.options.push("upper")};
         if(confirm("Use special characters?")) {chars.options.push("special")};
         if(confirm("Use numbers?")) {chars.options.push("numbers")};
-        console.log(chars.options)
+        // User has not selected at least one character type, so we alert them and go back over character types before moving on
         if(!Array.isArray(chars.options) || chars.options.length === 0) {alert("At least one character type must be selected!")};
     }
     // Final user selection about password length
