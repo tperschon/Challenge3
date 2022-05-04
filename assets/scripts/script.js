@@ -25,7 +25,11 @@ function writePassword() {
         // one-time appending of "Password Generated" text above the box containing generated password
         // I tried for a long time to figure out how to style this text but it seems it requires extra stuff like AJAX
         if(typeof onlyOnce === 'undefined') {
-            document.querySelector('.card-header').append("Password Generated");
+            var generatedMessage = document.createElement("span");
+            generatedMessage.textContent = "Password Generated";
+            generatedMessage.setAttribute("style", "color: green;")
+            // append the text "Password Generated" after our .card-header, which means text will show up underneath 'Generate a Password'
+            document.querySelector(".card-header").append(generatedMessage);
             onlyOnce = true;
         }
     }
