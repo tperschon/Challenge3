@@ -57,7 +57,6 @@ var generatePassword = function() {
         if(confirm("Use numbers?"))             {chars.concatenatedString += chars.numbers;}
         // User has not selected at least one character type, so we alert them and go back over character types before moving on
         if(chars.concatenatedString === "") {alert("At least one character type must be selected!");}
-
     }
 
     // Final user selection about password length
@@ -81,9 +80,9 @@ var generatePassword = function() {
     for (i = 0;i < passwordLength;i++) {
         // Every iteration, pick a random character from the concatenated string and add it to returnedPassword
         returnedPassword += chars.concatenatedString.charAt(Math.floor(Math.random() * chars.concatenatedString.length));
+    }
     // Return our now-generated password
     return returnedPassword;
-    }
 }
 /*  With our assigned button object, when clicked, execute writePassword()
     writePassword() does its thing, which has several confirms and prompts for our user
